@@ -21,4 +21,5 @@ jobs:
       - name: Upload to S3 Bucket
         run: aws s3 sync ./build s3://${{ secrets.AWS_BUCKET_NAME }} --delete
       # Future step need to invalidate Cloudfront cache if/when AWS gets back to me :D
-      
+      # - name: Invalidate Cloudfront Cache
+      #   run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }}
