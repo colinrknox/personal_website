@@ -6,11 +6,11 @@ import React from "react";
 
 function App() {
   return (
-    <body className="bg-gray-100 font-sans">
+    <>
       <Nav />
       <Splash />
       <Tiles />
-    </body>
+    </>
   );
 }
 
