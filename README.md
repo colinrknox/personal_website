@@ -1,4 +1,4 @@
-[![s3-deploy](https://github.com/colinrknox/personal_website/actions/workflows/build.yml/badge.svg)](https://github.com/colinrknox/personal_website/actions/workflows/build.yml)
+[![build](https://github.com/colinrknox/personal_website/actions/workflows/build.yml/badge.svg)](https://github.com/colinrknox/personal_website/actions/workflows/build.yml)
 
 # Personal Website
 
