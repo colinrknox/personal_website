@@ -5,13 +5,12 @@ const Nav = () => {
   return (
       <nav className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white bg-opacity-20 border-gray-200 px-2 sm:px-4 py-2.5 rounded-full shadow-lg z-50 mt-2">
         <div className="container flex flex-wrap justify-center items-center mx-auto">
-          <a
-            href="#"
+          <button
             className="text-gray-900 text-lg font-semibold"
             aria-current="page"
           >
             Colin Knox
-          </a>
+          </button>
           <button
             data-collapse-toggle="mobile-menu"
             type="button"
@@ -38,37 +37,33 @@ const Nav = () => {
           <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
-                <a
-                  href="#"
+                <button
                   className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
                   aria-current="page"
                 >
                   Home
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
                   className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
                 >
                   About
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
                   className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
                 >
                   Posts
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#"
+                <button
                   className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
                 >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>

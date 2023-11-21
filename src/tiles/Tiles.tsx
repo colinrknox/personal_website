@@ -11,7 +11,7 @@ function Tiles() {
             <img
               className="rounded-t-lg"
               src="path_to_image"
-              alt="Blog Post Image"
+              alt="Blog Post"
             />
             <div className="p-4">
               <h3 className="text-lg font-semibold">Blog Post Title</h3>
