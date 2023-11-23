@@ -10,7 +10,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Page />}>
           <Route index element={<><Splash /><Tiles /></>} />
-          <Route path="about" element={<Splash />} />
           <Route path="posts" element={<Tiles />} />
           <Route path="*" element={<Splash />} />
         </Route>

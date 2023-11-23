@@ -3,12 +3,19 @@ import "./Splash.css";
 
 function Splash() {
   return (
-    <section className="container mx-auto bg-white rounded-md mt-14">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        <div className="p-2">
-          <h1 className="font-semibold text-left text-4xl text-gray-800">
-            Hi, I'm Colin
-          </h1>
+    <section>
+      <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="col-span-1 md:col-span-1 flex items-center justify-center">
+          <div className="p-4">
+            <h2 className="text-3xl text-center font-bold text-gray-800 sm:text-4xl">
+              Hi, I'm Colin
+            </h2>
+            <p className="mt-3 text-center text-xl text-gray-500 sm:mt-4">
+              Software Engineer
+            </p>
+          </div>
+        </div>
+        <div className="col-span-1 md:col-span-2 p-4">
           <p>
             With about two years of experience as a software engineer, I have
             had the opportunity to develop, test, and maintain applications
