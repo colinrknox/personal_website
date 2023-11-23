@@ -6,7 +6,7 @@ import Post from "../post/Post";
 const author = "Colin Knox";
 const api = "https://api.cknox.dev";
 
-type Post = {
+type PostTile = {
   title: string;
   date: Date;
   imgUrl: string;
@@ -14,7 +14,7 @@ type Post = {
 };
 
 function Tiles() {
-  const [blogPosts, setBlogPosts] = useState<{ [key: string]: Post }>({});
+  const [blogPosts, setBlogPosts] = useState<{ [key: string]: PostTile }>({});
 
   useEffect(() => {
     fetch("https://api.cknox.dev/posts")
@@ -53,7 +53,7 @@ function Tiles() {
           </p>
         </div>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(blogPosts).map(([key, post]: [string, Post]) => (
+          {Object.entries(blogPosts).map(([key, post]: [string, PostTile]) => (
             <div
               key={key}
               data-key={key}
