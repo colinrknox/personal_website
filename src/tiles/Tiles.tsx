@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Tiles.css";
 import { useNavigate } from "react-router-dom";
-import Post from "../post/Post";
 
 const author = "Colin Knox";
 const api = "https://api.cknox.dev";
 
-type PostTile = {
+type Post = {
   title: string;
   date: Date;
   imgUrl: string;
@@ -14,7 +13,7 @@ type PostTile = {
 };
 
 function Tiles() {
-  const [blogPosts, setBlogPosts] = useState<{ [key: string]: PostTile }>({});
+  const [blogPosts, setBlogPosts] = useState<{ [key: string]: Post }>({});
 
   useEffect(() => {
     fetch("https://api.cknox.dev/posts")
@@ -53,7 +52,7 @@ function Tiles() {
           </p>
         </div>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Object.entries(blogPosts).map(([key, post]: [string, PostTile]) => (
+          {Object.entries(blogPosts).map(([key, post]: [string, Post]) => (
             <div
               key={key}
               data-key={key}
