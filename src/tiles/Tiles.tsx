@@ -1,58 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Tiles.css";
+import { useNavigate } from "react-router-dom";
+
+const author = "Colin Knox";
+const api = "https://api.cknox.dev";
+
+type Post = {
+  title: string;
+  date: Date;
+  imgUrl: string;
+  contents: string;
+};
 
 function Tiles() {
+  const [blogPosts, setBlogPosts] = useState<{ [key: string]: Post }>({});
+
+  useEffect(() => {
+    fetch("https://api.cknox.dev/posts")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setBlogPosts(data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+  }, []);
+
+  const navigate = useNavigate();
+
+  function handleClick(event: React.MouseEvent<HTMLDivElement>) {
+    const divElement = event.currentTarget as HTMLElement;
+    const key = divElement.getAttribute('data-key');
+    if (key)
+      navigate("/post", { state: blogPosts[key].contents });
+  }
+
   return (
-    <section className="container mt-3 mx-auto p-6 bg-white rounded-md shadow-lg">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Posts</h2>
-      <div className="flex flex-wrap -m-4">
-        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-          <div className="border border-gray-200 rounded-lg hover:shadow-lg">
-            <img
-              className="rounded-t-lg"
-              src="path_to_image"
-              alt="Blog Post"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">Blog Post Title</h3>
-              <p className="text-gray-600 mt-2">
-                Short description of the blog post.
-              </p>
-            </div>
-          </div>
+    <div className="bg-white py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12">
+          <h2 className="text-3xl text-center font-bold text-gray-800 sm:text-4xl">
+            Posts
+          </h2>
+          <p className="mt-3 text-center text-xl text-gray-500 sm:mt-4">
+            Discussing tech topics
+          </p>
         </div>
-        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-          <div className="border border-gray-200 rounded-lg hover:shadow-lg">
-            <img
-              className="rounded-t-lg"
-              src="path_to_image"
-              alt="Blog Post"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">Blog Post Title</h3>
-              <p className="text-gray-600 mt-2">
-                Short description of the blog post.
-              </p>
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Object.entries(blogPosts).map(([key, post]: [string, Post]) => (
+            <div
+              key={key}
+              data-key={key}
+              className="rounded-lg shadow-md overflow-hidden hover:shadow-xl"
+              onClick={handleClick}
+            >
+              <img
+                className="h-48 w-full object-cover"
+                src={api + "/img/" + post.imgUrl}
+                alt={post.title}
+              />
+              <div className="p-6">
+                <p className="text-sm font-medium text-gray-500">
+                  {post.date.toString()} · {author}
+                </p>
+                <p className="text-xl font-semibold text-gray-900 mt-2">
+                  {post.title}
+                </p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
-          <div className="border border-gray-200 rounded-lg hover:shadow-lg">
-            <img
-              className="rounded-t-lg"
-              src="path_to_image"
-              alt="Blog Post"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">Blog Post Title</h3>
-              <p className="text-gray-600 mt-2">
-                Short description of the blog post.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

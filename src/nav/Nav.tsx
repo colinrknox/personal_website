@@ -1,87 +1,82 @@
-import React, { useState } from "react";
-import "./Nav.css";
+import { Fragment } from 'react'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
-const Nav = () => { 
-  const [isOpen, setOpen] = useState(false);
+const navigation = [
+  { name: 'Home', href: '/', current: false },
+  { name: 'Posts', href: '/posts', current: false },
+]
 
-  const dropDown = () => {
-    console.log(isOpen)
-    setOpen(!isOpen);
-  }
+function classNames(...classes: any[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
+function Nav() {
   return (
-      <nav className={`fixed top-0 left-1/2 transform -translate-x-1/2 bg-white border-gray-500 px-2 sm:px-4 py-2.5 ${isOpen ? "rounded-lg" : "rounded-full"} shadow-md z-50 mt-2`}>
-        <div className="container flex flex-wrap justify-center items-center mx-auto">
-          {/* <button
-            className="text-gray-900 text-lg font-semibold mr-2"
-            aria-current="page"
-          >
-            Colin Knox
-          </button> */}
-          <button
-            data-collapse-toggle="mobile-menu"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            onClick={dropDown}
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-6 h-6"
-              aria-hidden="true"
-              fill="none"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-          <div className={`${!isOpen ? "hidden" : "block rounded-none"} w-full md:block md:w-auto`} id="mobile-menu">
-            <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
-              <li>
-                <a
-                  href="/"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/posts"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
-                >
-                  Posts
-                </a>
-              </li>
-              <li>
-                <button
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded md:bg-transparent md:p-0 md:hover:text-blue-700"
-                >
-                  Contact
-                </button>
-              </li>
-            </ul>
+    <Disclosure as="nav" className="bg-gray-800">
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button*/}
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex text-center">
+                  <h1 className="h-8 w-auto text-white text-3xl">CK</h1>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    {navigation.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className={classNames(
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </nav>
-  );
-};
+
+          <Disclosure.Panel className="sm:hidden">
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              {navigation.map((item) => (
+                <Disclosure.Button
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  className={classNames(
+                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block rounded-md px-3 py-2 text-base font-medium'
+                  )}
+                  aria-current={item.current ? 'page' : undefined}
+                >
+                  {item.name}
+                </Disclosure.Button>
+              ))}
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+  )
+}
 
 export default Nav;
