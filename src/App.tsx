@@ -10,7 +10,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Page />}>
-          <Route index element={<><Splash /><Tiles /></>} />
+          <Route
+            index
+            element={
+              <>
+                <Splash />
+                <Tiles />
+              </>
+            }
+          />
           <Route path="/post" element={<Post />} />
           <Route path="posts" element={<Tiles />} />
           <Route path="*" element={<Splash />} />

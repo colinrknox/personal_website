@@ -1,5 +1,5 @@
-import React from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import React from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -9,10 +9,16 @@ const Footer = () => {
           © 2023 Colin Knox. All rights reserved.
         </div>
         <div className="flex items-center space-x-4">
-          <a href="https://github.com/colinrknox" className="text-gray-400 hover:text-gray-600">
+          <a
+            href="https://github.com/colinrknox"
+            className="text-gray-400 hover:text-gray-600"
+          >
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/colin-r-knox" className="text-gray-400 hover:text-gray-600">
+          <a
+            href="https://linkedin.com/in/colin-r-knox"
+            className="text-gray-400 hover:text-gray-600"
+          >
             <FaLinkedin />
           </a>
         </div>
