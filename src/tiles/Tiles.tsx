@@ -36,7 +36,10 @@ function Tiles() {
   function handleClick(event: React.MouseEvent<HTMLDivElement>) {
     const divElement = event.currentTarget as HTMLElement;
     const key = divElement.getAttribute("data-key");
-    if (key) navigate("/post", { state: blogPosts[key].contents });
+    if (key) {
+      navigate("/post", { state: blogPosts[key].contents });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 
   return (
